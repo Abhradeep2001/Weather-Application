@@ -14,13 +14,15 @@
      margin-top: 35px;
  }
 
- H2 {
+ h2 {
      text-align: center;
      margin-top: 40px;
  }
 
- img {
-     text-align: center;
+ .icon{
+    display: flex;
+    justify-content: center;
+    margin: auto;
  }
 
  form {
