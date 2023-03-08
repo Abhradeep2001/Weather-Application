@@ -39,7 +39,7 @@ app.post("/",function(req,res){
 
     // https get method to retrieve information from any server using its url.
     https.get(url,function(response){
-        console.log(response.statusCode); //To print status Code
+        console.log("Success, StatusCode: "+response.statusCode); //To print status Code
         
         //To check for failed requests
         if(response.statusCode==404){
