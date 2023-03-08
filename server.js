@@ -20,6 +20,14 @@ app.get("/",function(req,res){
     res.sendFile(__dirname+"/index.html");
 })
 
+// const fetchData = async(city)=>{
+//     const apiKey="d4ddd5d908d601cc745fb3e401ead706#";
+//     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&lang=en&appid=${apiKey}`)
+//     const data = await response.json();
+//     console.log(data);
+
+// }
+
 //To handle post responses from home route("/")
 app.post("/",function(req,res){
     const city=req.body.ct;
@@ -28,13 +36,14 @@ app.post("/",function(req,res){
     //  create a url from the api key 
     const url="https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=Metric&lang=en&appid="+apiKey;
 
-    //https get method to retrieve information from any server using its url.
+    // https get method to retrieve information from any server using its url.
     https.get(url,function(response){
         console.log(response.statusCode); //To print status Code
         //To check for failed requests
         if(response.statusCode==404){
             res.sendFile(__dirname+"/failure.html");
         }
+    // fetchData(city);
 
         //To Tap into the data on the server
         response.on("data",function(data){
@@ -54,7 +63,7 @@ app.post("/",function(req,res){
 
             // 
             res.write(
-                '<head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title></title> <link rel="stylesheet" href="CSS and Images/styles.css"></head>'
+                '<head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title></title> <link rel="stylesheet" href="CSS and Images/styles2.css"></head>'
             )
             res.write("<h1>You are currently searching in "+city+" latitude ("+lat+") longitude ("+lon+")</h1><br>")
             res.write("<h1>Current weather conditions in "+city+" : "+description+"</h1>");
@@ -67,7 +76,6 @@ app.post("/",function(req,res){
         
         })
     })
-    
 })
 
 //To handle post requests from ("/failure") route
